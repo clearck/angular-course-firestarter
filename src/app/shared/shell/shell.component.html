@@ -29,10 +29,10 @@
       </button>
 
       <!-- Logo should be shown regardless of the screensize -->
-      <span class="logo">🔥 Angular Firstarter</span>
+      <span class="logo" routerLink="/">🔥 Angular Firstarter</span>
 
       <!-- Navbar for larger screens -->
-      <span class="fill-space"></span>
+      <span class=" fill-space"></span>
       <div *ngIf="!(isHandset$ | async)">
         <a mat-button routerLink="/kanban">🍱 Kanban Demo</a>
         <a mat-button routerLink="/customers">⚡ SSR Demo</a>
