@@ -7,7 +7,9 @@ import { HomePageComponent } from './home-page/home-page.component';
 // under that path
 const routes: Routes = [
   // the path "myUrl/ + path" will load the HomePageComponent
-  { path: '', component: HomePageComponent }
+  { path: '', component: HomePageComponent },
+  // defining the 'login' path. When accessing that path, loadChildren will lazily load the login component
+  { path: 'login', loadChildren: () => import('./user/user.module').then(m => m.UserModule) }
 ];
 
 @NgModule({
