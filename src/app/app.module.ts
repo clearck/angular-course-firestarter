@@ -12,13 +12,11 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +25,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
