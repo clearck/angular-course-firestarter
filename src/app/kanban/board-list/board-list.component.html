@@ -1,0 +1,6 @@
+<!-- the cdkDropList tag enables the actual list behavior, so that the items cant be dragged and placed anywhere on the map -->
+<div cdkDropList cdkDropListOrientation="horizontal" class="boards" (cdkDropListDropped)="drop($event)">
+  <app-board cdkDrag *ngFor="let board of boards" [board]="board">
+    <mat-icon cdkDragHandle class="handle">drag_indicator</mat-icon>
+  </app-board>
+</div>
