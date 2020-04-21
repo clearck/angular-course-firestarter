@@ -1,6 +1,6 @@
 <mat-card class="outer-card">
   <mat-card-header>
-    <!-- slot for the handle (were passing the handle to grab the board into the ng-content tag)-->
+    <!-- Slot for the handle -->
     <ng-content></ng-content>
     <mat-card-title>
       {{ board.title }}
@@ -11,10 +11,12 @@
   </mat-card-header>
 
   <div class="tasks" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="taskDrop($event)">
-    <div class="inner-card" cdkDrag *ngFor="let task of board.tasks; let i = index">
-      <!-- by binding the class to the label of the task, the css class with the label 
-        name will automatically be applied (in this case coloring the tasks)-->
-      <mat-card [ngClass]="task.label"> {{ task.description }}</mat-card>
+    <div class="inner-card" cdkDrag *ngFor="let task of board.tasks; let i = index" (click)="openDialog(task, i)">
+      <mat-card [ngClass]="task.label"> {{ task.description }} </mat-card>
     </div>
+
+    <button mat-stroked-button (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
   </div>
 </mat-card>
