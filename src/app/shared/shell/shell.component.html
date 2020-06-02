@@ -1,18 +1,22 @@
 <!-- Container to hold all the content for the navigation -->
 <mat-sidenav-container class="sidenav-container">
 
-  <!-- We're creating a sidebar and a normal navigation. Depending on the size of the Viewport, the 
+  <!-- We're creating a sidebar and a normal navigation. Depending on the size of the Viewport, the
   corresponding one is shown.
   More information: https://material.angular.io/components/sidenav/overview. -->
 
   <!-- contains the drawer content (for small devices) -->
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="false">
+               [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="false">
 
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
-      <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
+      <a *ngIf="!(afAuth.authState | async) else logout" mat-list-item routerLink="/login" (click)="drawer.close()">
+        Login</a>
+      <ng-template #logout>
+        <a mat-button (click)="afAuth.auth.signOut(); drawer.close()" routerLink="/login">Logout</a>
+      </ng-template>
       <a mat-list-item routerLink="/kanban" (click)="drawer.close()">Kanban Demo</a>
       <a mat-list-item routerLink="/customers" (click)="drawer.close()">SSR Demo</a>
     </mat-nav-list>
@@ -23,7 +27,7 @@
     <mat-toolbar>
       <!-- only show button, to expand the drawer, on smaller devices (ngIf) -->
       <button mat-icon-button type="button" aria-label="Toggle sidenav" (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+              *ngIf="isHandset$ | async">
         <!-- Text inside references a material icon. Valid names can be found in the official documentation   -->
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
@@ -37,7 +41,10 @@
         <a mat-button routerLink="/kanban">🍱 Kanban Demo</a>
         <a mat-button routerLink="/customers">⚡ SSR Demo</a>
 
-        <a mat-button routerLink="/login">🔑 Login</a>
+        <a mat-button *ngIf="!(afAuth.authState | async) else logout" routerLink="/login">🔑 Login</a>
+        <ng-template #logout>
+          <a mat-button (click)="afAuth.auth.signOut()" routerLink="/login">🔑 Logout</a>
+        </ng-template>
       </div>
 
       <!-- DROPDOWN MENU -->
