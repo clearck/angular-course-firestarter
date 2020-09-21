@@ -15,7 +15,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
     <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()">Cancel</button>
         <!-- mat-dialog-close is the data that will be passed back to the parent component-->
-        <button mat-button [mat-dialog-close]="data.title" cdkFocusInitial>Create</button>
+        <button mat-button [mat-dialog-close]="data.title">Create</button>
     </div>
   `,
   styles: []

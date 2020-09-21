@@ -30,7 +30,8 @@ export class BoardComponent {
         : { task: newTask, isNew: true }
     });
 
-    // handle when the dialog is closed. in this case after closed emits an observable that auto-complets after the dialog is closed
+    // handle when the dialog is closed. in this case after closed emits an observable that auto-completes after the
+    // dialog is closed
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (result.isNew) {
